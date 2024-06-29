@@ -1,0 +1,15 @@
+<app-toolbar *ngIf="getRouter().url !== '/' "></app-toolbar>
+<app-sidebar *ngIf="getRouter().url !== '/' "></app-sidebar>
+
+<router-outlet></router-outlet>
+
+<p-scrollTop>
+  <ng-template pTemplate="icon">
+    <i class="fi fi-sr-arrow-small-up"></i>
+  </ng-template>
+</p-scrollTop>
+
+<!-- <app-footer *ngIf="getRouter().url !== '/' "></app-footer> -->
+
+
+<p-toast></p-toast>

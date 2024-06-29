@@ -1,0 +1,60 @@
+
+    <mat-card id="chart" style= "width:650px; height: 381px; position: relative; padding-top: 20px">
+
+      <mat-card-content >
+        <div class="tabletitle">
+        
+            <div>
+                <span class="heading"  >Hourly Dispatch Details</span>
+            </div>
+        
+            <div  class="searchtab">
+            
+              <mat-slider
+              class="average"
+              [max]="max"
+              [min]="min"
+              [step]="step"
+              [discrete]="thumbLabel"
+              [showTickMarks]="showTicks">
+            <input matSliderThumb [(ngModel)]="value">
+          </mat-slider>
+            
+            <!-- <mat-slider tyle="width:40%" thumbLabel name="range1" type="range" tickInterval="1" step="1" min="1" max="24"
+            (change)="onChangeRange(timeSlider)">
+              <input matSliderThumb>
+            </mat-slider> -->
+            
+             
+            </div>
+            
+        
+            <div class="" style="display:inline-block;">
+                <form class="form1">
+                    <p-calendar  dateFormat="dd.mm.yy" placeholder="  Select Date"   [style]="{'width':'130px','height':'33px'}"></p-calendar>
+                </form>   
+            </div>
+        
+            
+            
+        </div>
+        
+       
+          <div class="switch">
+            <p-inputSwitch [(ngModel)]="checked" /> &nbsp; <span class="switchText">{{ checked ? 'Assets Out' : 'Assets In' }}</span>
+          </div> 
+          <apx-chart
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [xaxis]="chartOptions.xaxis!"
+          [dataLabels]="chartOptions.dataLabels!"
+          [grid]="chartOptions.grid!"
+          [stroke]="chartOptions.stroke!"
+          [title]="chartOptions.title!"
+          [markers]="chartOptions.markers!"
+        ></apx-chart>
+      </mat-card-content>
+
+    </mat-card>
+
+

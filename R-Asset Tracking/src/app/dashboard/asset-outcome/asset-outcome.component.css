@@ -1,0 +1,53 @@
+mat-card{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+  border: 1px solid grey;
+  border-radius: 15px; 
+}
+
+.buttons{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.tabletitle{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.head {
+  color: #f76c6c;
+  font-size: small;
+  font-weight: bold; 
+}
+
+#subhead {
+  font-size: small;
+  padding-top: 10px;
+}
+
+
+
+button {
+    background: #fff;
+    color: #222;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #ddd;
+    border-radius: 2px;
+    padding: 4px 17px;
+  }
+  
+  button.active {
+    color: #fff;
+    background: #f76c6c;
+    border: 1px solid #da2020;
+    border-bottom: 2px solid #da2020;
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+
+  

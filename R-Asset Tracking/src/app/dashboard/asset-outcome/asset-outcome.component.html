@@ -1,0 +1,87 @@
+<div class="outcome">
+    <div class="out-Div">
+        <mat-card>
+           
+                <div class="tabletitle">
+        
+                    <div>
+                        <span class="head"  >Statistics</span>
+                        <mat-card-subtitle><span id="subhead">Asset Outcome</span></mat-card-subtitle>
+                    </div>
+                
+                   
+                    
+                
+                    <div class="" style="display:inline-block;">
+                        <img mat-card-image src="assets/icons/Info/truck.png" alt="Beacon_img" style="height: 60px ; width:100px">
+                    </div>
+                
+                    
+                    
+                </div>
+
+                <!-- <div class="header-content">
+                    <div class="asset-info">
+                      <span class="head">Statistics</span>
+                      <mat-card-subtitle><span id="subhead">Asset Outcome</span></mat-card-subtitle>
+                    </div>
+                    <div class="truckimg"> -->
+                      <!-- <mat-card-subtitle>1000</mat-card-subtitle> -->
+                      <!-- <img mat-card-image src="assets/icons/Info/truck.png" alt="Beacon_img" style="height: 60px ; width:100px">
+                    </div>
+                  </div>   -->
+                
+            
+            <mat-card-footer>
+                <span class="buttons">
+                <button
+                    (click)="updateOptions( '1m' )"
+                    [class.active]="activeOptionButton=='1m'"
+                    >
+                    1M
+                    </button>
+                <button
+                    (click)="updateOptions( '6m' )"
+                    [class.active]="activeOptionButton=='6m'"
+                    >
+                    6M
+                </button>
+                <button
+                    (click)="updateOptions( '1y' )"
+                    [class.active]="activeOptionButton=='1y'"
+                    >
+                    1Y
+                </button>
+                <button
+                    (click)="updateOptions( '1yd' )"
+                    [class.active]="activeOptionButton=='1yd'"
+                    >
+                    1YD
+                </button>
+                <button
+                    (click)="updateOptions( 'all' )"
+                    [class.active]="activeOptionButton=='all'"
+                    >
+                    All
+                </button>
+            </span>
+                <apx-chart
+                    #chart
+                    [series]="chartOptions.series!"
+                    [chart]="chartOptions.chart!"
+                    [colors]="chartOptions.colors"
+                    [yaxis]="chartOptions.yaxis!"
+                    [dataLabels]="chartOptions.dataLabels!"
+                    [markers]="chartOptions.markers!"
+                    [stroke]="chartOptions.stroke!"
+                    [grid]="chartOptions.grid!"
+                    [xaxis]="chartOptions.xaxis!"
+                    [tooltip]="chartOptions.tooltip!"
+                    [annotations]="chartOptions.annotations!"
+                    ></apx-chart>
+                </mat-card-footer>
+        </mat-card>
+    </div>
+</div>
+
+

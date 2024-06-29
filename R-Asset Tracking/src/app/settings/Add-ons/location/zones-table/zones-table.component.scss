@@ -1,0 +1,19 @@
+@import "primeicons/primeicons.css";
+
+th{
+    font-size:small;   
+    color: red !important;
+    text-align: center !important;
+    text-transform: uppercase;
+    // font-weight: 500;
+}
+td{
+    // font-size:small;
+    text-align: center !important;
+    text-transform: uppercase;
+}
+#savebutton{
+    float:right;
+    height:35px;
+    margin-top: 1rem;
+}

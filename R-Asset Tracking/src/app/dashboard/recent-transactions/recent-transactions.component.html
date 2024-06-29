@@ -1,0 +1,48 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- S.NO Column -->
+    <ng-container matColumnDef="sno">
+      <th mat-header-cell *matHeaderCellDef> S.NO </th>
+      <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+    </ng-container>
+
+    <!-- ASSET NAME Column -->
+    <ng-container matColumnDef="assetName">
+      <th mat-header-cell *matHeaderCellDef> NAME</th>
+      <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+    </ng-container>
+
+    <!-- SITE Column -->
+    <ng-container matColumnDef="condition">
+      <th mat-header-cell *matHeaderCellDef> CONDITION </th>
+      <td mat-cell *matCellDef="let element"> {{element.condition}} </td>
+    </ng-container>
+
+    <!-- ZONE Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> CATEGORY </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <!-- TIME Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> STATUS </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <!-- STATUS Column -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> LOCATION </th>
+      <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastseen">
+      <th mat-header-cell *matHeaderCellDef> LAST SEEN </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastseen}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
