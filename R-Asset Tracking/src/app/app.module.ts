@@ -72,6 +72,9 @@ import { MenuModule } from 'primeng/menu';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MonthlyReportComponent } from './reports/Addons/monthly-report/monthly-report.component';
+
+
 
 @NgModule({
     declarations: [
@@ -99,6 +102,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
         InoutReportComponent,
         AssetAvailabilityComponent,
         MplComponent,
+        MonthlyReportComponent,
+   
     ],
     providers: [DynamicDialogRef, MessageService, ConfirmationService],
     bootstrap: [AppComponent],
