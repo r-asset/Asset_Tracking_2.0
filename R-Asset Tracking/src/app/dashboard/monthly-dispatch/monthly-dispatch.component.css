@@ -1,20 +1,22 @@
 mat-card{
-    width: 500px;
-    height: 395px;
-    transform: translate3d(0, 0, 0); /* Start at the top and move down on hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(0, 0, 0); 
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
-    border: 1px solid grey;
+    border: 1px solid #80808080;
     border-radius: 15px;
 }
-div.apexcharts-legend.apexcharts-align-center.apx-legend-position-right{
-    position: absolute;
-    left: 218px;
-    top: -2px;
-    /* right: 5px; */
-    display: flex;
-    flex-direction: row;
-}
-div.apexcharts-toolbar{
-    right: 117px;
-}
+.chart{
+    height: 100%;
+    width: 100%;
+  }
+
+  #MyChart{
+    display: flex !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+
 

@@ -10,7 +10,7 @@ export class ReportService {
 
   constructor(private http: HttpClient, private Cookie: CookieService) { }
 
-  url='http://127.0.0.1:8000/'
+  url='http://172.29.29.181:8077/'
 
 
   getData(endpoint:string):Observable <any> {

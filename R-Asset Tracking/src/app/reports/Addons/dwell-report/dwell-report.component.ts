@@ -25,40 +25,27 @@ categoriesname: any = [];
 pipe = new DatePipe('en-US');
 DwellTable: any;
 dwellSearch: any;
-dwellValue: any;
-operator: any;
 
-maxDate!: Date ; 
+
+maxDate!: Date ;
 siteurl = 'assets/site.json'
 zoneurl = 'assets/zone.json'
 areaurl = 'assets/area.json'
 categoryurl = 'assets/category.json'
 
-
+formgroup:boolean=false;
 displaytable: boolean=false;
 showloader: boolean=false;
 
 constructor(private fb: FormBuilder,private service: ReportService,private settingsService: SettingsService,private http: HttpClient){
   this.dwellSearch = [
-    {name: 'Minutes', code: 'Minutes'},
+    // {name: 'Minutes', code: 'Minutes'},
     {name: 'HOURS',   code: 'HOURS'},
     {name: 'DAYS',    code: 'DAYS'},
     {name: 'MONTHS',  code: 'MONTHS'},
   ];
-  this.dwellValue = [
-    {name: 'Equals',               code: 'EQUALS'},
-    {name: 'Not Equals',           code: 'NOT EQUALS'},
-    {name: 'Less Than',            code: 'LESS THAN'},
-    {name: 'Less Than Or Equals',  code: 'LESS THAN OR EQUALS'},
-    {name: 'More Than',            code: 'MORE THAN'},
-    {name: 'More Than Or Equals',  code: 'MORE THAN OR EQUALS'},
-  ];
-  this.operator = [
-    {name: 'NONE',  code: 'NONE'},
-    {name: 'AND',   code: 'AND'},
-    {name: 'OR',    code: 'OR'},
-  ];
- 
+
+
 }
  ngOnInit(): void {
   this.http.get(this.siteurl).subscribe(res=>{
@@ -68,7 +55,7 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
       for(const res of this.sitesname){
         sitename.push(res.sc_name)
       }
-      console.log(sitename)  
+      console.log(sitename)
       this.sitesname = sitename
   });
 
@@ -79,7 +66,7 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
       for(const res of this.areasname){
         areaname.push(res.ar_name)
       }
-      console.log(areaname) 
+      console.log(areaname)
       this.areasname = areaname
      });
 
@@ -91,7 +78,7 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
         zonename.push(res.zn_name)
       }
       console.log(zonename)
-      
+
       this.zonesname = zonename
      });
      this.http.get(this.categoryurl).subscribe(res=>{
@@ -101,22 +88,11 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
       for(const res of this.categoriesname){
         categoryname.push(res.cm_name)
       }
-      console.log(categoryname) 
+      console.log(categoryname)
       this.categoriesname = categoryname
-     }); 
-  // this.settingsService.getData("businesslocations/site").subscribe(res=>{
-  //   this.sites=res
-  //  });
-  // this.settingsService.getData("businesslocations/zone").subscribe(res=>{
-  //   this.zones=res
-  //  });
-  // this.settingsService.getData("businesslocations/area").subscribe(res=>{
-  //   this.areas=res
-  //  });
-  //   this.settingsService.getData("category/data").subscribe(res=>{
-  //     this.category=res
-  // });
-          
+     });
+
+
 
   this.form = this.fb.group({
     dr_frmdte:   ['',Validators.required],
@@ -126,13 +102,17 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
     dr_zoneid: ['',Validators.required],
     dr_dwelltype: ['',Validators.required],
     dr_category:['',Validators.required],
-    dr_logicaloperator: ['',Validators.required],
-    dr_dwelloperator1: ['',Validators.required],
-    dr_dwelloperand1: [0],
-    dr_dwelloperator2: ['',Validators.required],
-    dr_dwelloperand2: [0]  
+    // dr_logicaloperator: ['',Validators.required],
+    // dr_dwelloperator1: ['',Validators.required],
+    // dr_dwelloperand1: [0],
+    // dr_dwelloperator2: ['',Validators.required],
+    // dr_dwelloperand2: [0]
   });
 
+  }
+  openfilter1(){
+    this.showloader = false
+    this.formgroup = !this.formgroup
   }
   openfilter(){
     this.showloader = false
@@ -145,6 +125,9 @@ constructor(private fb: FormBuilder,private service: ReportService,private setti
 OnSubmit(){
   this.showloader = true;
   this.displaytable = !this.displaytable
+  this.service.postData('virtualreport/dwelltime',this.form.value).subscribe(res => {
+    this.DwellTable = res
+  })
 
   console.log(this.form.value)
 
@@ -152,7 +135,7 @@ OnSubmit(){
   let toDate=this.pipe.transform(this.form.value.dr_todte,"yyyy-MM-dd")
 
   this.form.controls['dr_frmdte'].setValue(fromDate);
-  this.form.controls['dr_todte'].setValue(toDate); 
+  this.form.controls['dr_todte'].setValue(toDate);
 
   this.service.postData('virtualreport/dwelltime',this.form.value).subscribe(res => {
     this.DwellTable = res
@@ -164,23 +147,23 @@ exportExcel(){
 
   if (!table) {
     console.error("The table element with ID 'dom' does not exist.");
-    return; 
+    return;
   }
 
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
 
   const merge = [
-     { s: { r: 1, c: 1 }, e: { r: 2, c: 6 } }, 
+     { s: { r: 1, c: 1 }, e: { r: 2, c: 6 } },
    ];
    ws['!merges'] = merge;
    XLSX.utils.sheet_add_aoa(ws, [['Dwell Report Details']], { origin: 'B2' });
 
-   
+
    // Leave 2 empty rows
    XLSX.utils.sheet_add_aoa(ws, [['']], { origin: 'B3' });
    XLSX.utils.sheet_add_aoa(ws, [['']], { origin: 'B4' });
- 
+
    const headerRow = table.querySelector('thead tr');
 
    if (headerRow) {
@@ -207,7 +190,7 @@ exportExcel(){
 
   for (var i in ws) {
     if (typeof ws[i] != 'object') continue;
-      let cell = XLSX.utils.decode_cell(i);   
+      let cell = XLSX.utils.decode_cell(i);
 
       ws[i].s = {
             font: {
@@ -215,15 +198,15 @@ exportExcel(){
             },
             alignment: {
               vertical: 'center',
-              horizontal: 'center', 
+              horizontal: 'center',
             },
             border: {
               right: {style: 'thin'},
-              left: {style: 'thin'}, 
+              left: {style: 'thin'},
               top : {style: 'thin'},
               bottom: {style: 'thin'},
             },
-           
+
           }
           if (cell.r == 1) {
             ws[i].s = {
@@ -234,7 +217,7 @@ exportExcel(){
               },
               alignment: {
                 vertical: 'center',
-                horizontal: 'center', 
+                horizontal: 'center',
               },
             }
           }
@@ -247,11 +230,11 @@ exportExcel(){
               },
               alignment: {
                 vertical: 'center',
-                horizontal: 'center', 
+                horizontal: 'center',
               },
               border: {
                 right: {style: 'thin'},
-                left: {style: 'thin'}, 
+                left: {style: 'thin'},
                 top : {style: 'thin'},
                 bottom: {style: 'thin'},
               },
@@ -269,10 +252,10 @@ exportExcel(){
   const cellB4 = 'B4';
   const cellB4Style = {
     border: {
-      top: { style: 'none' }, 
-      bottom: { style: 'none' }, 
-      left: { style: 'none' }, 
-      right: { style: 'none' }, 
+      top: { style: 'none' },
+      bottom: { style: 'none' },
+      left: { style: 'none' },
+      right: { style: 'none' },
     },
   };
   ws[cellB4].s = cellB4Style;

@@ -73,8 +73,7 @@
   white-space: nowrap;
   overflow: hidden;
   opacity: 0;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 17px;
   transition: opacity 0.3s ease;
   margin-left: 0.8rem;
   margin-top: 23px;

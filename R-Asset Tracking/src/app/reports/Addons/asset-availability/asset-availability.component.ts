@@ -18,7 +18,7 @@ form: any;
 
 assetavailabilityTable: any;
 
-maxDate!: Date ; 
+maxDate!: Date ;
 pipe = new DatePipe('en-US');
 
 sitesname: any = [];
@@ -27,6 +27,7 @@ areasname: any = [];
 categoriesname: any = [];
 
 searchby: any;
+formgroup:boolean=false;
 displaytable: boolean=false;
 showloader: boolean=false;
 
@@ -59,7 +60,7 @@ ngOnInit(): void {
       for(const res of this.sitesname){
         sitename.push(res.sc_name)
       }
-      console.log(sitename)  
+      console.log(sitename)
       this.sitesname = sitename
   });
 
@@ -70,7 +71,7 @@ ngOnInit(): void {
       for(const res of this.areasname){
         areaname.push(res.ar_name)
       }
-      console.log(areaname) 
+      console.log(areaname)
       this.areasname = areaname
      });
 
@@ -82,7 +83,7 @@ ngOnInit(): void {
         zonename.push(res.zn_name)
       }
       console.log(zonename)
-      
+
       this.zonesname = zonename
      });
      this.http.get(this.categoryurl).subscribe(res=>{
@@ -92,12 +93,16 @@ ngOnInit(): void {
       for(const res of this.categoriesname){
         categoryname.push(res.cm_name)
       }
-      console.log(categoryname) 
+      console.log(categoryname)
       this.categoriesname = categoryname
-     }); 
+     });
 }
 applyFilterGlobal($event:any, stringValue:any){
   this.dt.filterGlobal(($event.target as HTMLInputElement).value, stringValue);
+}
+openfilter1(){
+  this.showloader = false
+  this.formgroup = !this.formgroup
 }
 
 openfilter(){
@@ -125,23 +130,23 @@ exportExcel(){
 
   if (!table) {
     console.error("The table element with ID 'dom' does not exist.");
-    return; 
+    return;
   }
 
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
 
   const merge = [
-     { s: { r: 1, c: 1 }, e: { r: 2, c: 6 } }, 
+     { s: { r: 1, c: 1 }, e: { r: 2, c: 6 } },
    ];
    ws['!merges'] = merge;
    XLSX.utils.sheet_add_aoa(ws, [['Asset Availability Details']], { origin: 'B2' });
 
-   
+
    // Leave 2 empty rows
    XLSX.utils.sheet_add_aoa(ws, [['']], { origin: 'B3' });
    XLSX.utils.sheet_add_aoa(ws, [['']], { origin: 'B4' });
- 
+
    const headerRow = table.querySelector('thead tr');
 
    if (headerRow) {
@@ -168,7 +173,7 @@ exportExcel(){
 
   for (var i in ws) {
     if (typeof ws[i] != 'object') continue;
-      let cell = XLSX.utils.decode_cell(i);   
+      let cell = XLSX.utils.decode_cell(i);
 
       ws[i].s = {
             font: {
@@ -176,15 +181,15 @@ exportExcel(){
             },
             alignment: {
               vertical: 'center',
-              horizontal: 'center', 
+              horizontal: 'center',
             },
             border: {
               right: {style: 'thin'},
-              left: {style: 'thin'}, 
+              left: {style: 'thin'},
               top : {style: 'thin'},
               bottom: {style: 'thin'},
             },
-           
+
           }
           if (cell.r == 1) {
             ws[i].s = {
@@ -195,7 +200,7 @@ exportExcel(){
               },
               alignment: {
                 vertical: 'center',
-                horizontal: 'center', 
+                horizontal: 'center',
               },
             }
           }
@@ -208,11 +213,11 @@ exportExcel(){
               },
               alignment: {
                 vertical: 'center',
-                horizontal: 'center', 
+                horizontal: 'center',
               },
               border: {
                 right: {style: 'thin'},
-                left: {style: 'thin'}, 
+                left: {style: 'thin'},
                 top : {style: 'thin'},
                 bottom: {style: 'thin'},
               },
@@ -230,10 +235,10 @@ exportExcel(){
   const cellB4 = 'B4';
   const cellB4Style = {
     border: {
-      top: { style: 'none' }, 
-      bottom: { style: 'none' }, 
-      left: { style: 'none' }, 
-      right: { style: 'none' }, 
+      top: { style: 'none' },
+      bottom: { style: 'none' },
+      left: { style: 'none' },
+      right: { style: 'none' },
     },
   };
   ws[cellB4].s = cellB4Style;

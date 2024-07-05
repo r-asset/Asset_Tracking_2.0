@@ -1,7 +1,5 @@
 @import "primeicons/primeicons.css";
 
-
-
 .searchtab{
     display: flex;
     justify-content: space-between;
@@ -22,15 +20,33 @@
   border-radius: 16px;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1), 2px 1px 2px 2px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.125);
-  width: 520px;
-  height: 404px;
+  width: 549px;
+  height: 100%;
   position: relative; /* Ensure it is positioned relative to the page flow */
   z-index: 2; /* Ensure the form appears above the background image */
 }
+
+img{
+  width: 50px;
+  left: 2px;
+  position: relative;
+}
+
 .heading{
     margin-right: 6rem;
 
 }
+
+::ng-deep{
+  .pi-filter[_ngcontent-lux-c81]:before {
+    content: "\e94c";
+    top: 9px;
+    left: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+}
+
 .top-align{
   position:relative;
   top: 20px;
@@ -42,8 +58,3 @@
   align-items: stretch;
 }
 
-img{
-    width: 50px;
-    left: 2px;
-    position: relative;
-}

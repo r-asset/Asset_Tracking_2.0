@@ -73,7 +73,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MonthlyReportComponent } from './reports/Addons/monthly-report/monthly-report.component';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -103,7 +103,7 @@ import { MonthlyReportComponent } from './reports/Addons/monthly-report/monthly-
         AssetAvailabilityComponent,
         MplComponent,
         MonthlyReportComponent,
-   
+        SidebarComponent,
     ],
     providers: [DynamicDialogRef, MessageService, ConfirmationService],
     bootstrap: [AppComponent],
@@ -111,6 +111,7 @@ import { MonthlyReportComponent } from './reports/Addons/monthly-report/monthly-
         CommonModule,
         BrowserModule,
         AppRoutingModule,
+        RouterModule,
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
@@ -150,7 +151,7 @@ import { MonthlyReportComponent } from './reports/Addons/monthly-report/monthly-
         TieredMenuModule,
         MenuModule,
         HighchartsChartModule,
-        SidebarComponent
+        
     ]
 })
 export class AppModule { }

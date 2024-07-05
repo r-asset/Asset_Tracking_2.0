@@ -1,22 +1,19 @@
 <div id="chart">
-  <div class="chart-Div">
+
     <mat-card>
       <mat-card-header>
         <mat-card-title>
           <span>Monthly Dispatch</span>
         </mat-card-title>
-        <mat-card-subtitle>
-          <!-- <h6>Details</h6> -->
-        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-footer>
+      <mat-card-content>
             <highcharts-chart 
             [Highcharts]="Highcharts" 
             [options]="Options" 
-            style="width: 100%; height: 100%; display: block;">
+           >
           </highcharts-chart>
-      </mat-card-footer>
+      </mat-card-content>
     </mat-card>
-  </div>
+
   
 </div>

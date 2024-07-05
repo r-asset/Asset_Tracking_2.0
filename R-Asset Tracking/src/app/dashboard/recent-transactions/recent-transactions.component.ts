@@ -15,6 +15,11 @@ export interface TrolleyData {
 
 const ELEMENT_DATA: TrolleyData[] = [
   {sno: '01', name: 'Trolleys', condition: 'Available', category: 'Shipping', status: 'In Production', location: 'MATE III - IN',lastseen:'25 MAY 2024, 12.45 A.M'},
+  {sno: '02', name: 'Trolleys', condition: 'Available', category: 'Shipping', status: 'In Production', location: 'MATE III - IN',lastseen:'25 MAY 2024, 12.45 A.M'},
+  {sno: '03', name: 'Trolleys', condition: 'Available', category: 'Shipping', status: 'In Production', location: 'MATE III - IN',lastseen:'25 MAY 2024, 12.45 A.M'},
+  {sno: '04', name: 'Trolleys', condition: 'Available', category: 'Shipping', status: 'In Production', location: 'MATE III - IN',lastseen:'25 MAY 2024, 12.45 A.M'},
+  {sno: '05', name: 'Trolleys', condition: 'Available', category: 'Shipping', status: 'In Production', location: 'MATE III - IN',lastseen:'25 MAY 2024, 12.45 A.M'},
+  
 ]
 
 

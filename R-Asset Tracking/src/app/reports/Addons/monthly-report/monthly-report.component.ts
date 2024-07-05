@@ -6,105 +6,68 @@ import { Table } from 'primeng/table';
 import { HttpClient } from '@angular/common/http';
 import * as XLSX from "xlsx-js-style";
 
+
+
 @Component({
-  selector: 'app-mpl',
-  templateUrl: './mpl.component.html',
-  styleUrls: ['./mpl.component.scss']
+  selector: 'app-monthly-report',
+  templateUrl: './monthly-report.component.html',
+  styleUrls: ['./monthly-report.component.scss']
 })
-export class MplComponent {
-@ViewChild('dt', { static: true })
+export class MonthlyReportComponent {
+  @ViewChild('dt', { static: true })
 dt!: Table;
 form: any;
 
-mplTable: any;
+assetavailabilityTable: any;
 
 maxDate!: Date ;
 pipe = new DatePipe('en-US');
+
+sitesname: any = [];
+
+
 
 formgroup:boolean=false;
 displaytable: boolean=false;
 showloader: boolean=false;
 
-sitesname: any = [];
-zonesname: any = [];
-areasname: any = [];
-categoriesname: any = [];
-
 siteurl = 'assets/site.json'
-zoneurl = 'assets/zone.json'
-areaurl = 'assets/area.json'
-categoryurl = 'assets/category.json'
 
-constructor(private fb: FormBuilder,private service:ReportService,private http: HttpClient)
-{
+
+constructor(private fb: FormBuilder,private service:ReportService,private http: HttpClient){
 
 }
 ngOnInit(): void {
   this.form = this.fb.group({
-    mpl_frmdte:  ['',Validators.required],
-    mpl_todte:  ['',Validators.required],
-    mpl_siteid:['',Validators.required],
-    mpl_areaid:['',Validators.required],
-    mpl_zoneid:['',Validators.required],
-    mpl_category:['',Validators.required],
+    aa_frmdte:   ['',Validators.required],
+    aa_todte:   ['',Validators.required],
+    aa_siteid: ['',Validators.required],
   });
-  this.http.get(this.siteurl).subscribe(res=>{
-    this.sitesname=res
+   this.http.get(this.siteurl).subscribe(res=>{
+      this.sitesname=res
 
-    let sitename: string[] =[]
-    for(const res of this.sitesname){
-      sitename.push(res.sc_name)
-    }
-    console.log(sitename)
-    this.sitesname = sitename
-});
+      let sitename: string[] =[]
+      for(const res of this.sitesname){
+        sitename.push(res.sc_name)
+      }
+      console.log(sitename)
+      this.sitesname = sitename
+  });
 
-   this.http.get(this.areaurl).subscribe(res=>{
-    this.areasname=res
-
-    let areaname: string[] =[]
-    for(const res of this.areasname){
-      areaname.push(res.ar_name)
-    }
-    console.log(areaname)
-    this.areasname = areaname
-   });
-
-   this.http.get(this.zoneurl).subscribe(res=>{
-    this.zonesname=res
-
-    let zonename: string[] =[]
-    for(const res of this.zonesname){
-      zonename.push(res.zn_name)
-    }
-    console.log(zonename)
-
-    this.zonesname = zonename
-   });
-   this.http.get(this.categoryurl).subscribe(res=>{
-    this.categoriesname=res
-
-    let categoryname: string[] =[]
-    for(const res of this.categoriesname){
-      categoryname.push(res.cm_name)
-    }
-    console.log(categoryname)
-    this.categoriesname = categoryname
-   });
 }
-
+applyFilterGlobal($event:any, stringValue:any){
+  this.dt.filterGlobal(($event.target as HTMLInputElement).value, stringValue);
+}
 openfilter1(){
   this.showloader = false
   this.formgroup = !this.formgroup
 }
+
 openfilter(){
   this.showloader = false
   this.displaytable = !this.displaytable
 }
 
-applyFilterGlobal($event:any, stringValue:any){
-  this.dt.filterGlobal(($event.target as HTMLInputElement).value, stringValue);
-}
 OnSubmit(){
   this.showloader = true;
   this.displaytable = !this.displaytable
@@ -112,11 +75,11 @@ OnSubmit(){
   let formdate=this.pipe.transform(this.form.value.aa_frmdte,"yyyy-MM-dd")
   let todate=this.pipe.transform(this.form.value.aa_todte,"yyyy-MM-dd")
 
-  this.form.controls['mpl_frmdte'].setValue(formdate);
-  this.form.controls['mpl_todte'].setValue(todate);
+  this.form.controls['aa_frmdte'].setValue(formdate);
+  this.form.controls['aa_todte'].setValue(todate);
 
   this.service.postData('virtualreport/assetavailability',this.form.value).subscribe(res =>{
-    this.mplTable = res
+    this.assetavailabilityTable = res
    })
    this.showloader=false
 }
@@ -135,7 +98,7 @@ exportExcel(){
      { s: { r: 1, c: 1 }, e: { r: 2, c: 6 } },
    ];
    ws['!merges'] = merge;
-   XLSX.utils.sheet_add_aoa(ws, [['Movements Per Location Details']], { origin: 'B2' });
+   XLSX.utils.sheet_add_aoa(ws, [['Asset Availability Details']], { origin: 'B2' });
 
 
    // Leave 2 empty rows
@@ -240,6 +203,7 @@ exportExcel(){
 
 
   XLSX.utils.book_append_sheet(wb,ws);
-  XLSX.writeFile(wb,'MPL_Report.xlsx')
+  XLSX.writeFile(wb, 'Asset_Availability.xlsx')
+
 }
 }

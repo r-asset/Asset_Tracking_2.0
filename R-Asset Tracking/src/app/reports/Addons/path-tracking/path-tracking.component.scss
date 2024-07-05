@@ -11,13 +11,13 @@
     .p-datatable th {
         color: red !important;
         text-transform: uppercase;
-        
-    }   
+
+    }
 }
 // ::ng-deep {
 //     .p-datatable td {
-        
-    
+
+
 //     }
 // }
 .heading{
@@ -52,7 +52,7 @@
 .icon{
     .p-icon{
         width: 0.5rem !important;
-        height: 0.5rem !important; 
+        height: 0.5rem !important;
     }
 }
 // ::ng-deep {
@@ -79,10 +79,10 @@
 ::ng-deep {
     .p-datatable th {
         font-size:small;
-        color: #da2020 !important;
+        color: #FFCDCD !important;
         text-align: center !important;
         text-transform: uppercase;
-    }   
+    }
 }
 ::ng-deep {
     .p-datatable td {
@@ -97,5 +97,18 @@
     .p-sortable-column-icon {
         width: 12px !important;
         height: 12px !important;
+    }
+}
+
+::ng-deep {
+    .p-calendar-w-btn .p-inputtext{
+        height:40px;
+        width:120px !important;
+    }
+}
+
+::ng-deep {
+    .p-calendar-w-btn .p-datepicker-trigger{
+        height:40px;
     }
 }

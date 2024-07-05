@@ -9,9 +9,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginComponent } from './login/login.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+
 const routes: Routes = [
-      {path:'', component:LoginComponent},
+      { path:'', component:LoginComponent},
       { path: 'dashboard',             component:DashboardComponent      },
+
       { path: 'item-management',       component:ItemManagementComponent },
       { path: 'workflow',              component:WorkflowComponent       },
       { path: 'settings',              component:SettingsComponent       },

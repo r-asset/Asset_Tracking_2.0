@@ -36,18 +36,18 @@ constructor(private fb: FormBuilder,private http: HttpClient,private service: Re
   private itemservice: ItemManagementService) 
 {
   
- this.http.get(this.url).subscribe( res=>{
+ this.service.getData('item/pathtracker').subscribe( res=>{
   this.itemsname = res  
-  
-  let itemname :string[] =[]
-  for(const res of this.itemsname){
-    itemname.push(res.im_name)
+  // console.log("one",this.itemsname)
+  // let itemname :string[] =[]
+  // for(const res of this.itemsname){
+  //   itemname.push(res.im_name)
 
-  }
-  // let name = itemname
-  // console.log(typeof(name))
-  // console.log(name)
-  this.itemsname = itemname
+  // }
+  // // let name = itemname
+  // // console.log(typeof(name))
+  // // console.log(name)
+  // this.itemsname = itemname
 
  });
  
@@ -152,7 +152,7 @@ OnSubmit(){
         "pt_fromdate":this.pipe.transform(date1,'yyyy-MM-dd'),
         "pt_todate":this.pipe.transform(date2,'yyyy-MM-dd')
       }
-      this.service.postData('taglocation/pathtracking',datass).subscribe(res =>{
+      this.service.postData('item/pathtracker',datass).subscribe(res =>{
         this.pathTrackingTable = res
        })
        console.log(datass)
@@ -164,7 +164,7 @@ OnSubmit(){
         "pt_fromdate":this.timefrom,
         "pt_todate":this.timeto
       }
-      this.service.postData('taglocation/pathtracking',datas).subscribe(res =>{
+      this.service.postData('item/pathtracker',datas).subscribe(res =>{
         this.pathTrackingTable = res
        })
     console.log(datas)
@@ -176,7 +176,7 @@ OnSubmit(){
         "pt_fromdate":this.timefrom,
         "pt_todate":this.timeto
       }
-      this.service.postData('taglocation/pathtracking',datas1).subscribe(res =>{
+      this.service.postData('item/pathtracker',datas1).subscribe(res =>{
         this.pathTrackingTable = res
        })
       console.log(datas1)
@@ -188,7 +188,7 @@ OnSubmit(){
         "pt_fromdate":this.timefrom,
         "pt_todate":this.timeto
       }
-      this.service.postData('taglocation/pathtracking',datas2).subscribe(res =>{
+      this.service.postData('item/pathtracker',datas2).subscribe(res =>{
         this.pathTrackingTable = res
        })
       console.log(datas2)
@@ -200,7 +200,7 @@ OnSubmit(){
         "pt_fromdate":this.timefrom,
         "pt_todate":this.timeto
       }
-      this.service.postData('taglocation/pathtracking',datas3).subscribe(res =>{
+      this.service.postData('item/pathtracker',datas3).subscribe(res =>{
         this.pathTrackingTable = res
        })
       console.log(datas3)
